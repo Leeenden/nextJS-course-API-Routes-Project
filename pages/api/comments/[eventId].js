@@ -51,7 +51,12 @@ async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const documents = await getAllDocuments(client, "comments", { _id: -1 })
+      const documents = await getAllDocuments(
+        client,
+        "comments",
+        { _id: -1 },
+        { eventId: eventId }
+      )
       res.status(200).json({ comments: documents })
     } catch (error) {
       res.status(500).json({ message: "Getting comments failed!" })
